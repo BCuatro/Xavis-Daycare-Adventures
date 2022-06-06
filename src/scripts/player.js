@@ -19,8 +19,8 @@ export class Player {
             height: 125
         };
     }
-    draw() {
-        ctx.fillStyle = this.color;
+    draw(ctx) {
+        ctx.fillStyle = "blue";
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
         if (this.isCatching) {
             ctx.fillStyle = "green";
@@ -28,19 +28,19 @@ export class Player {
         }
     }
 
-    update() {
-        this.draw();
+    update(ctx) {
+        this.draw(ctx);
         this.catchBox.position.x = this.position.x + this.catchBox.offset.x;
         this.catchBox.position.y = this.position.y + this.catchBox.offset.y-50 ;
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
         
-        if (this.position.y + this.height + this.velocity.y >= canvas.height) {
-            this.velocity.y = 0;
-        } 
-        else {
-            this.velocity.y += gravity;
-        }
+        // if (this.position.y + this.height + this.velocity.y >= canvas.height) {
+        //     this.velocity.y = 0;
+        // } 
+        // else {
+        //     this.velocity.y += gravity;
+        // }
 
     };
     catch() {

@@ -5,7 +5,7 @@ export class collisionBox{
         this.height = height
         this.position = position
         } 
-        draw(){
+        draw(ctx){
             ctx.fillStyle = 'white'
             ctx.fillRect(this.position.x, this.position.y,this.width, this.height)
     }

@@ -1,13 +1,15 @@
-import { collisionBox } from "./collisionbox"
-import { Player } from "./player"
-import { Collectable } from "./collectableobjects";
-import{ Platform } from "./platform"
+import { collisionBox } from "./scripts/collisionbox"
+import { Player } from "./scripts/player"
+import { Collectable } from "./scripts/collectableobjects";
+import{ Platform } from "./scripts/platform"
 
 document.addEventListener("DOMContentLoaded", function () {
 
     const canvas = document.getElementById('mycanvas');
+    const ctx = canvas.getContext('2d')
+
     const background = new Image()
-    background.src = "./img/city.png"
+    background.src = "./src/img/city.png"
     ctx.drawImage(background,0,0)
     
     //variables
@@ -19,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let endDogMeet = false;
     const gravity = .5;
     let startGamePlay = false
-    const ctx = canvas.getContext('2d')
     const meetDogButton= document.querySelector('#dogMeet')
     const meetDog = document.querySelector('.dabutton')
     const startGameButton = document.querySelector('#startGame')
@@ -45,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
             sign: "wind",
             moveType: 8,
-            imageLink: "./img/wind2.png",
+            imageLink: "./src/img/wind2.png",
             speed: 1,
             frames: 1,
             size: 0.255,
@@ -78,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         sign: "balloon",
         moveType: 100,
-        imageLink: "./img/yellowballoon.png",
+        imageLink: "./src/img/yellowballoon.png",
         speed: 5,
         frames: 19,
         size: 0.255,
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         sign: "flower",
         moveType: 100,
-        imageLink:"./img/flower.png",
+        imageLink:"./src/img/flower.png",
         speed: 20,
         frames: 3,
         frameOffset:1,
@@ -112,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         sign: "dinosaur",
         moveType: 100,
-        imageLink:"./img/Dinosaur.png",
+        imageLink:"./src/img/Dinosaur.png",
         speed: 4,
         frames: 10,
         size:0.25,
@@ -127,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         sign: "red and blue bird",
         moveType: 6,
-        imageLink: "./img/birds3.png",
+        imageLink: "./src/img/birds3.png",
         speed: 4,
         frames: 10,
         size: 0.4,
@@ -145,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         sign: "red bird",
         moveType: 7,
-        imageLink: "./img/birds4.png",
+        imageLink: "./src/img/birds4.png",
         speed: 4,
         frames: 45,
         size: 0.15,
@@ -163,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         sign: "S",
         moveType: 100,
-        imageLink: "./img/sun.png",
+        imageLink: "./src/img/sun.png",
         speed: 9,
         frames: 2,
         size: 0.45,
@@ -182,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         sign: "ninja",
         moveType: 5,
-        imageLink: "./img/ninja3.png",
+        imageLink: "./src/img/ninja3.png",
         speed: 5,
         frames: 10,
         size: 0.20,
@@ -202,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         sign: "cat",
         moveType: 100,
-        imageLink: "./img/cat.png",
+        imageLink: "./src/img/cat.png",
         speed: 8,
         frames: 6,
         size: 0.7,
@@ -297,8 +298,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //Start screen movement
 
     function update2(object1,object2){
-        object2.draw()
-        object1.draw()
+        object2.draw(ctx)
+        object1.draw(ctx)
         
         
     
@@ -351,8 +352,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if(endDogMeet){return}
         window.requestAnimationFrame(animate);
         ctx.drawImage(background,0,0)
-        collectables[collectables.length-1].draw()
-        startScreenPlayer.draw()
+        collectables[collectables.length-1].draw(ctx)
+        startScreenPlayer.draw(ctx)
         
         
     }
@@ -365,11 +366,10 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.drawImage(background,0,0)
         update2(startScreenPlayer,collectables[collectables.length-1])
         
-        dog.draw()
+        dog.draw(ctx)
 
 
     }
-    animate_game()
 
     function animate_game() {
         
@@ -377,20 +377,20 @@ document.addEventListener("DOMContentLoaded", function () {
         // ctx.fillStyle = 'red';
         // ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(background,0,0)
-        dog.draw()
+        dog.draw(ctx)
     
 
-        player.update();
-        wind.update()
-        // platform.draw();
-        // platform2.draw();
-        // platform3.draw();
-        // floorPlatform.draw();
-        // floorPlatform2.draw();
+        player.update(ctx);
+        wind.update(ctx)
+        // platform.draw(ctx);
+        // platform2.draw(ctx);
+        // platform3.draw(ctx);
+        // floorPlatform.draw(ctx);
+        // floorPlatform2.draw(ctx);
         
         collectables.forEach(
             (collectable) => {
-                collectable.update()
+                collectable.update(ctx)
                 if (objectCollision({ object1: player, object2: collectable })
                 && player.isCatching && collectable.sign ===collectables[collectables.length-1].sign) {
                 player.isCatching = false;
@@ -405,6 +405,12 @@ document.addEventListener("DOMContentLoaded", function () {
             player.velocity.x = 5 * multiplier;
         } else if (keys.ArrowLeft.hit && player.lastkey === "ArrowLeft" && player.position.x > 0) {
             player.velocity.x = -5 * multiplier;
+        }
+        if (player.position.y + player.height + player.velocity.y >= canvas.height) {
+            player.velocity.y = 0;
+        } 
+        else {
+            player.velocity.y += gravity;
         }
     
         if (player.position.y + player.height <= platform.position.y && 
@@ -546,7 +552,7 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             sign: "balloon",
             moveType: 9,
-            imageLink: "./img/yellowballoon.png",
+            imageLink: "./src/img/yellowballoon.png",
             speed: 5,
             frames: 19,
             size: 0.255,

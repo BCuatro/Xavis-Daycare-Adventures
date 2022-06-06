@@ -44,7 +44,7 @@ export class Platform {
             
         })
     }
-    draw(){
+    draw(ctx){
         // this.cornerA.draw()
         // this.cornerB.draw()
         // this.cornerC.draw()

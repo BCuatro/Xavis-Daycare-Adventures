@@ -37,7 +37,7 @@ export class Collectable{
     }
 
 
-    draw(){
+    draw(ctx){
 
         if (this.imageLink ===""){ 
         ctx.fillStyle = 'purple'
@@ -56,8 +56,8 @@ export class Collectable{
             this.image.height *this.size) 
         }
     }
-     update(){
-        this.draw()
+     update(ctx){
+        this.draw(ctx)
         // this.collisionBox.draw()
         this.currentFrame++
         if(this.currentFrame % this.speed===0){

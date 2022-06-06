@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./dist/main.css" />
+    <link rel="stylesheet" href="./src/styles/index.css" />
     <script src="./dist/main.js"></script>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+       
+    </style>
+    <h1>Xavi's Daycare Adventures</h1>
+       
     <canvas id="mycanvas" ></canvas>
     
     <title>Xavi's Daycare Adventures </title>
 </head>
 <body>  
+    
     <div> 
         <div id='start-screen' class='screen' style ="position: relative; display: flex;">
             <div class="dabutton" > <button id="dogMeet">START GAME</button>
@@ -27,7 +37,7 @@
     <div style ="position: relative; display: block;">
         
         
-        <div style ="position: absolute; display: flex; width: 71%; left: 18%;">
+        <div style ="position: absolute; display: flex; width: 70%; left: 15%; bottom: 0; top: -20px">
             
             <div class = "instructions" > INSTRUCTIONS
                 <ul>
@@ -56,20 +66,22 @@
       
         
     </div>
-     <div>
-        <div id= 'navBar' style="position: absolute ; display: flex; align-items: flex-start;">
-            <ul>
-                <li><a href="https://www.linkedin.com/in/eric-balfour/">My Linkedin</a></li>
-                <li><a href="https://github.com/BCuatro">My Github</a></li>
-            </ul>
+     
+
+    <div >        
+        <ul id= 'navBar'>
+            <li><a href="https://www.linkedin.com/in/eric-balfour/">My Linkedin</a></li>
+            <li><a href="https://github.com/BCuatro">My Github</a></li>
+        </ul>
 
 
-        </div>
     </div>
+
+    <div id="endMessage"></div>
 
     
 
-    <div id="endMessage"></div>
+   
     
     
 </body>

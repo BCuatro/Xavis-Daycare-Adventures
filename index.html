@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/main.css" />
+    <script src="./dist/main.js"></script>
+    <canvas id="mycanvas" ></canvas>
+    
+    <title>Xavi's Daycare Adventures </title>
+</head>
+<body>  
+    <div> 
+        <div id='start-screen' class='screen' style ="position: relative; display: flex;">
+            <div class="dabutton" > <button id="dogMeet">START GAME</button>
+            <div> 
+                <p>Hi My name is Xavi</p>
+            </div>
+        </div>
+            
+        </div>    
+        
+    </div>
+  
+ 
+    <div style ="position: relative; display: block;">
+        
+        
+        <div style ="position: absolute; display: flex; width: 71%; left: 18%;">
+            
+            <div class = "instructions" > INSTRUCTIONS
+                <ul>
+                    <li>Catch the moving object that matches Apollo's clue</li>
+                    <li>Collect all the objects Apollo's sees to win the game</li>
+                </ul>
+                
+            </div>
+            <div class = "instructions" >GAME CONTROLS
+                <ul>
+                    <li>Left Arrow: Move Left</li>
+                    <li>Right Arrow: Move Right</li>
+                    <li>Up Arrow: Jump</li>
+                    <li>Space Bar: Catch</li>
+
+                </ul>
+                
+            </div>
+            
+            <div class = "instructions" >GAME CLUES
+                <div class="startbutton" style= "display: none" > <button id="startGame">PLAY</button></div>
+            </div>
+            
+            
+        </div>
+      
+        
+    </div>
+     <div>
+        <div id= 'navBar' style="position: absolute ; display: flex; align-items: flex-start;">
+            <ul>
+                <li><a href="https://www.linkedin.com/in/eric-balfour/">My Linkedin</a></li>
+                <li><a href="https://github.com/BCuatro">My Github</a></li>
+            </ul>
+
+
+        </div>
+    </div>
+
+    
+
+    <div id="endMessage"></div>
+    
+    
+</body>
+</html>

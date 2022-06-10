@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let iSpyItems=[]
     let endDogMeet = false;
     const gravity = .5;
-    let startGamePlay = false
     const meetDogButton= document.querySelector('#dogMeet')
     const meetDog = document.querySelector('.dabutton')
     const startGameButton = document.querySelector('#startGame')
@@ -292,9 +291,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-
-
-
     //Start screen movement
 
     function update2(object1,object2){
@@ -341,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector('#endMessage').innerHTML = "Great Job"
         document.querySelector('#endMessage').style.display = "flex"
         return true
-        }
+        } else{return false}
 
     }
 
@@ -365,13 +361,13 @@ document.addEventListener("DOMContentLoaded", function () {
         // ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(background,0,0)
         update2(startScreenPlayer,collectables[collectables.length-1])
-        
         dog.draw(ctx)
 
 
     }
 
     function animate_game() {
+        
         
         window.requestAnimationFrame(animate_game);
         // ctx.fillStyle = 'red';
@@ -394,12 +390,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (objectCollision({ object1: player, object2: collectable })
                 && player.isCatching && collectable.sign ===collectables[collectables.length-1].sign) {
                 player.isCatching = false;
-                iSpyItems.push(collectables.pop())
+                collectables.pop()
+                
                 
                 }
                 
             });
-            if(gameOver()){return}
         player.velocity.x = 0;
         if (keys.ArrowRight.hit && player.lastkey === "ArrowRight" && player.position.x + player.width< 1000) {
             player.velocity.x = 5 * multiplier;
@@ -454,8 +450,9 @@ document.addEventListener("DOMContentLoaded", function () {
         //     (player.position.y >= floorPlatform2.position.y ||player.position.y + player.height >= floorPlatform2.position.y) ){
         //     player.velocity.x=0
         // }
-
-    
+        
+        if(gameOver()){return}
+        
     };
 
     //Event Listeners

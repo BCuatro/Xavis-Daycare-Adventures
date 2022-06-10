@@ -80,7 +80,7 @@ h1{
     background-color: beige;
     
 }
- ul{
+.instructions ul{
     font-family: sans-serif;
     font-size: x-small;
     color: black;
@@ -103,20 +103,6 @@ h1{
     left: 0;
     right: 0;
   
-
-}
-#navBar{
-    position: absolute ;
-    display: block;
-    top: 25%;
-    bottom: 0;
-    left: 5%;
-    right: 0;
-    font-size: large;
-    font-family: BabyBloc;
-   
-
-    
 
 }
 

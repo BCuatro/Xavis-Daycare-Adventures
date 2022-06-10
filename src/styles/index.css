@@ -1,10 +1,10 @@
 @font-face {
     font-family: BabyBloc;
-    src: url(../src/fonts/WaveBlocks-Regular.ttf);
+    src: url(./src/fonts/WaveBlocks-Regular.ttf);
 }
 @font-face {
     font-family: ToyBlocks ;
-    src: url(../src/fonts/K26ToyBlocks123.ttf);
+    src: url(./src/fonts/K26ToyBlocks123.ttf);
     
 }
 
